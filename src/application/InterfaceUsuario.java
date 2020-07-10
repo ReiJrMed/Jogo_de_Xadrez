@@ -1,7 +1,11 @@
 package application;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 import Xadrez.Cor;
 import Xadrez.Peca_Xadrez;
+import Xadrez.xadrezPosition;
 
 public class InterfaceUsuario {
 	
@@ -28,7 +32,21 @@ public class InterfaceUsuario {
 		
 		//código copiado para usar no console
 	
-	public static void imprimeTabuleiro(Peca_Xadrez[][] pecas) {
+     public static xadrezPosition lerXadrezPosition(Scanner sc) {
+    	 try {
+    		 String s = sc.nextLine();
+    		 Character coluna = s.charAt(0);
+    		 Integer linha = Integer.parseInt(s.substring(1));
+    		 return new xadrezPosition(coluna, linha);
+    	 } catch(RuntimeException e) {
+    		 throw new InputMismatchException("Erro ao ler a posição. Valores válidos são do intervalo a1 até h8.");
+    	 }	 
+    	 /*while (s.length() != 2){
+    		 s = sc.nextLine();
+    	 }*/   	 
+     }	
+	
+	 public static void imprimeTabuleiro(Peca_Xadrez[][] pecas) {
 		for(int i = 0; i < pecas.length; i++) {
 			System.out.print((pecas.length -i) + " ");
 			for(int j = 0; j < pecas[i].length; j++) {
