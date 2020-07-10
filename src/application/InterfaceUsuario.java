@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import Xadrez.Cor;
+import Xadrez.Partida;
 import Xadrez.Peca_Xadrez;
 import Xadrez.xadrezPosition;
 
@@ -38,6 +39,13 @@ public class InterfaceUsuario {
 	public static void clearScreen() {
 	    System.out.print("\033[H\033[2J");
 	    System.out.flush();
+	}
+	
+	public static void imprimePartida(Partida partida) {
+		imprimeTabuleiro(partida.getPecas());
+		System.out.println();
+		System.out.println("Turno: " + partida.getTurno());
+		System.out.println("Vez do jodador responsável pelas peças da cor " + partida.getTurnoJogador());
 	}
 		
 	 public static xadrezPosition lerXadrezPosition(Scanner sc) {
