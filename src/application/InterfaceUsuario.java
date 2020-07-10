@@ -51,6 +51,8 @@ public class InterfaceUsuario {
 		System.out.println();
 		System.out.println("Turno: " + partida.getTurno());
 		System.out.println("Vez do jodador responsável pelas peças da cor " + partida.getTurnoJogador());
+		if(partida.getCheck())
+			System.out.println("CHECK!");
 	}
 		
 	 public static xadrezPosition lerXadrezPosition(Scanner sc) {

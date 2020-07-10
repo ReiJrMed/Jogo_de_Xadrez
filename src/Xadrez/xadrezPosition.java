@@ -28,8 +28,11 @@ public class xadrezPosition {
 	}
 	
 	protected static xadrezPosition fromXadrezPosition(Position position) {
-		return new xadrezPosition((char)('a' -position.getColuna()), 8 -position.getLinha());
+		return new xadrezPosition((char)('a' +position.getColuna()), 8 -position.getLinha());
+		//return new xadrezPosition((char)('a' -position.getColuna()), 8 -position.getLinha());
 		//caso dê errado tentar esse new xadrezPosition((char)('a' +position.getColuna()), 8 -position.getLinha());
+		//deu erro no código anterior que era new xadrezPosition((char)('a' -position.getColuna()), 8 -position.getLinha());
+		//já sabia disso por isso deixei esse comentário de correção antes
 	}
 	
 	@Override
