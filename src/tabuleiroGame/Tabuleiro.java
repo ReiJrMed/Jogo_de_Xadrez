@@ -6,6 +6,11 @@ public class Tabuleiro {
 	private Peca[][] pecas;
 	
 	public Tabuleiro(Integer linha, Integer coluna) {
+		
+		if((linha < 1) || (coluna < 1)) {
+			throw new tabuleiroGameException("Erro ao criar tabuleiro: É necessário haver mais de uma linha e mais de uma coluna.");
+		}
+		
 		this.linha = linha;
 		this.coluna = coluna;
 		pecas = new Peca[linha][coluna];
@@ -15,29 +20,53 @@ public class Tabuleiro {
 		return linha;
 	}
 
-	public void setLinha(Integer linha) {
-		this.linha = linha;
-	}
-
+	
 	public Integer getColuna() {
 		return coluna;
 	}
 
-	public void setColuna(Integer coluna) {
-		this.coluna = coluna;
-	}
-	
 	public Peca peca(Integer linha, Integer coluna) {
+		if(!existPosition(linha, coluna))
+			throw new tabuleiroGameException("Posição inexistente no tabuleiro.");
+		
 		return pecas[linha][coluna];
 	}
 	
 	public Peca peca(Position position) {
+		if(!existPosition(position))
+			throw new tabuleiroGameException("Posição inexistente no tabuleiro.");
+		
 		return pecas[position.getLinha()][position.getColuna()];
 	}
 	
 	public void posicionarPeca(Peca peca, Position position) {
+		if(positionOcupada(position))
+			throw new tabuleiroGameException("Já existe uma peça na posição " + position);
+		
 		pecas[position.getLinha()][position.getColuna()] = peca;
 		peca.position = position;
+	}
+	
+	public Boolean existPosition(Integer linha, Integer coluna) {
+		return (linha >= 0) && (linha < this.linha ) && (coluna >= 0) && (coluna < this.coluna);
+	}
+	
+	public Boolean existPosition(Position position) {
+		return existPosition(position.getLinha(), position.getColuna());
+	}
+	
+	public Boolean positionOcupada(Position position) {
+		if(!existPosition(position))
+			throw new tabuleiroGameException("Posição inexistente no tabuleiro.");
+		
+		return peca(position) != null;
+	}
+	
+	public Boolean positionOcupada(Integer linha, Integer coluna) {
+		if(!existPosition(linha, coluna))
+			throw new tabuleiroGameException("Posição inexistente no tabuleiro.");
+		
+		return peca(linha, coluna) != null;
 	}
 
 }
