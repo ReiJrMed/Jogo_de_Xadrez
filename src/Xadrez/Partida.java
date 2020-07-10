@@ -29,9 +29,19 @@ public class Partida {
 	}
 	
 	private void Inicio() {
-		posicionarPecaXadrez('a', 8, new Torre(tabuleiro, Cor.BRANCA));
-		posicionarPecaXadrez('e', 8, new Rei(tabuleiro, Cor.BRANCA));
-		posicionarPecaXadrez('e', 1, new Rei(tabuleiro, Cor.PRETA));
+		posicionarPecaXadrez('c', 1, new Torre(tabuleiro, Cor.BRANCA));
+		posicionarPecaXadrez('c', 2, new Torre(tabuleiro, Cor.BRANCA));
+		posicionarPecaXadrez('d', 2, new Torre(tabuleiro, Cor.BRANCA));
+		posicionarPecaXadrez('e', 2, new Torre(tabuleiro, Cor.BRANCA));
+		posicionarPecaXadrez('e', 1, new Torre(tabuleiro, Cor.BRANCA));
+		posicionarPecaXadrez('d', 1, new Rei(tabuleiro, Cor.BRANCA));
+
+		posicionarPecaXadrez('c', 7, new Torre(tabuleiro, Cor.PRETA));
+		posicionarPecaXadrez('c', 8, new Torre(tabuleiro, Cor.PRETA));
+		posicionarPecaXadrez('d', 7, new Torre(tabuleiro, Cor.PRETA));
+		posicionarPecaXadrez('e', 7, new Torre(tabuleiro, Cor.PRETA));
+		posicionarPecaXadrez('e', 8, new Torre(tabuleiro, Cor.PRETA));
+		posicionarPecaXadrez('d', 8, new Rei(tabuleiro, Cor.PRETA));		
 	}
 
 }
