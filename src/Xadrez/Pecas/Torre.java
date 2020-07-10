@@ -17,15 +17,9 @@ public class Torre extends Peca_Xadrez{
 	}
 	
 	@Override
-	public final Boolean[][] movimentosPossiveis() {
-		Boolean[][] mat = new Boolean[getTabuleiro().getLinha()][getTabuleiro().getColuna()];
-		
-		for(int i = 0; i < mat.length; i++) {
-			for(int j = 0; j < mat[i].length; j++) {
-				mat[i][j] = false;					
-			}
-		}
-		
+	public boolean[][] movimentosPossiveis() {
+		boolean[][] mat = new boolean[getTabuleiro().getLinha()][getTabuleiro().getColuna()];
+				
 		Position p = new Position(0, 0);
 		
 		//acima
@@ -34,7 +28,7 @@ public class Torre extends Peca_Xadrez{
 			mat[p.getLinha()][p.getColuna()] = true;
 			p.setLinha(p.getLinha() -1);
 		}
-		if((getTabuleiro().existPosition(p)) && (getTabuleiro().positionOcupada(p)))
+		if((getTabuleiro().existPosition(p)) && (getTabuleiro().positionOcupada(p)) && (existePecaAdversaria(p)))
 			mat[p.getLinha()][p.getColuna()] = true;
 		
 		//esquerda
@@ -43,7 +37,7 @@ public class Torre extends Peca_Xadrez{
 			mat[p.getLinha()][p.getColuna()] = true;
 			p.setColuna(p.getColuna() -1);
 		}
-		if((getTabuleiro().existPosition(p)) && (getTabuleiro().positionOcupada(p)))
+		if((getTabuleiro().existPosition(p)) && (getTabuleiro().positionOcupada(p)) && (existePecaAdversaria(p)))
 			mat[p.getLinha()][p.getColuna()] = true;
 		
 		//direita
@@ -52,7 +46,7 @@ public class Torre extends Peca_Xadrez{
 			mat[p.getLinha()][p.getColuna()] = true;
 			p.setColuna(p.getColuna() +1);
 		}
-		if((getTabuleiro().existPosition(p)) && (getTabuleiro().positionOcupada(p)))
+		if((getTabuleiro().existPosition(p)) && (getTabuleiro().positionOcupada(p)) && (existePecaAdversaria(p)))
 			mat[p.getLinha()][p.getColuna()] = true;
 		
 		//acima
@@ -61,7 +55,7 @@ public class Torre extends Peca_Xadrez{
 			mat[p.getLinha()][p.getColuna()] = true;
 			p.setLinha(p.getLinha() +1);
 		}
-		if((getTabuleiro().existPosition(p)) && (getTabuleiro().positionOcupada(p)))
+		if((getTabuleiro().existPosition(p)) && (getTabuleiro().positionOcupada(p)) && (existePecaAdversaria(p)))
 			mat[p.getLinha()][p.getColuna()] = true;
 		
 		return mat;
