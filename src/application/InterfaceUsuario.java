@@ -16,7 +16,9 @@ public class InterfaceUsuario {
 		StringBuilder sb = new StringBuilder();
 		sb.append("  ");
 		for(int i = 0; i < pecas.length; i++) {
-			sb.append(((char) (0b01100001 + i)) + " "); 
+			sb.append(((char) ('a' + i)) + " "); //imprimir caracteres em ordem alfabética
+			
+			//sb.append(((char) (0b01100001 + i)) + " "); 
 			/*imprimindo caracteres em ordem alfabética usando código binário com a máscara para binário 0b
 			 * sendo que 01100001 se refere ao caractere 'a' e soma-se a ele i para obter os caracteres posteriores
 			 * nesse caso para imprimir é necessário o cast para char*/
