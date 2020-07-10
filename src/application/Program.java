@@ -1,9 +1,14 @@
 package application;
 
+import Xadrez.Partida;
+
 public class Program {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		Partida partida = new Partida();
+		InterfaceUsuario.imprimeTabuleiro(partida.getPecas());
+		
 
 	}
 

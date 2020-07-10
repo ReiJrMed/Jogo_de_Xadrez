@@ -5,10 +5,10 @@ public class Peca {
 	protected Position position;
 	private Tabuleiro tabuleiro;
 	
-	public Peca(Position position) {
-		this.position = position;
+	public Peca(Tabuleiro tabuleiro) {
+		this.tabuleiro = tabuleiro;
 	}
-	
+
 	protected Tabuleiro getTabuleiro() {
 		return tabuleiro;
 	}
