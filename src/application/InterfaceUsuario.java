@@ -32,7 +32,13 @@ public class InterfaceUsuario {
 		
 		//código copiado para usar no console
 	
-     public static xadrezPosition lerXadrezPosition(Scanner sc) {
+	// https://stackoverflow.com/questions/2979383/java-clear-the-console
+	public static void clearScreen() {
+	    System.out.print("\033[H\033[2J");
+	    System.out.flush();
+	}
+		
+	 public static xadrezPosition lerXadrezPosition(Scanner sc) {
     	 try {
     		 String s = sc.nextLine();
     		 Character coluna = s.charAt(0);
