@@ -17,6 +17,7 @@ public class Partida {
 	private Integer turno;
 	private Cor turnoJogador;
 	private boolean check;
+	private boolean checkmate;
 	
 	private List<Peca> pecasCapturadas = new ArrayList<>();
 	private List<Peca> pecasTabuleiro = new ArrayList<>();
@@ -36,6 +37,10 @@ public class Partida {
 	
 	public boolean getCheck() {
 		return check;
+	}
+	
+	public boolean getCheckmate() {
+		return checkmate;
 	}
 	
 	public Peca_Xadrez[][] getPecas(){
@@ -74,6 +79,31 @@ public class Partida {
 	    return false;
 	}
 	
+	private boolean testeCheckmate(Cor cor) {
+	    if(!testeCheck(cor))
+	    	return false;
+		
+	    List<Peca> pecasCor = pecasTabuleiro.stream().filter(x -> (((Peca_Xadrez)x).getCor() == cor)).collect(Collectors.toList());
+	    
+	    for(Peca p : pecasCor) {
+	    	boolean[][] mat = p.movimentosPossiveis();
+	    	for(int i = 0; i < mat.length; i++) {
+	    		for(int j = 0; j < mat[i].length; j++) {
+	    			if(mat[i][j]) {
+	    				Position origin = ((Peca_Xadrez)p).getPosicaoXadrez().toPosition();
+	    				Position destiny = new Position(i, j);
+	    				Peca pecaCapturada = processoMovimento(origin, destiny);
+	    				boolean TesteCheque = testeCheck(cor);
+	    				desfazerProcessoMovimento(origin, destiny, pecaCapturada);
+	    				if(!TesteCheque)
+	    					return false;
+	    			}
+	    		}
+	    	}
+	    }
+	    return true;	    
+	}
+	
 	public boolean[][] movimentosPeca(xadrezPosition origem){
 		Position origin = origem.toPosition();
 		validarPositionOrigem(origin);
@@ -94,7 +124,11 @@ public class Partida {
 		
 		check = (testeCheck(oponente(turnoJogador))) ? true : false;
 		
-		proximoTurno();
+		if(testeCheckmate(oponente(turnoJogador)))
+			checkmate = true;
+		else		
+		  proximoTurno();
+		
 		return (Peca_Xadrez) pecaCapturada;
 	}
 	
@@ -120,9 +154,6 @@ public class Partida {
 			pecasCapturadas.remove(pecaCapturada);
 			pecasTabuleiro.add(pecaCapturada);
 		}
-		
-		
-		
 	}
 	
 	private void validarPositionOrigem(Position origin) {
@@ -155,19 +186,12 @@ public class Partida {
 		turno = 1;
 		turnoJogador = Cor.BRANCA;
 		
-		posicionarPecaXadrez('c', 1, new Torre(tabuleiro, Cor.BRANCA));
-		posicionarPecaXadrez('c', 2, new Torre(tabuleiro, Cor.BRANCA));
-		posicionarPecaXadrez('d', 2, new Torre(tabuleiro, Cor.BRANCA));
-		posicionarPecaXadrez('e', 2, new Torre(tabuleiro, Cor.BRANCA));
-		posicionarPecaXadrez('e', 1, new Torre(tabuleiro, Cor.BRANCA));
-		posicionarPecaXadrez('d', 1, new Rei(tabuleiro, Cor.BRANCA));
+		posicionarPecaXadrez('h', 7, new Torre(tabuleiro, Cor.BRANCA));
+		posicionarPecaXadrez('d', 1, new Torre(tabuleiro, Cor.BRANCA));
+		posicionarPecaXadrez('e', 1, new Rei(tabuleiro, Cor.BRANCA));
 
-		posicionarPecaXadrez('c', 7, new Torre(tabuleiro, Cor.PRETA));
-		posicionarPecaXadrez('c', 8, new Torre(tabuleiro, Cor.PRETA));
-		posicionarPecaXadrez('d', 7, new Torre(tabuleiro, Cor.PRETA));
-		posicionarPecaXadrez('e', 7, new Torre(tabuleiro, Cor.PRETA));
-		posicionarPecaXadrez('e', 8, new Torre(tabuleiro, Cor.PRETA));
-		posicionarPecaXadrez('d', 8, new Rei(tabuleiro, Cor.PRETA));		
+		posicionarPecaXadrez('b', 8, new Torre(tabuleiro, Cor.PRETA));
+		posicionarPecaXadrez('a', 8, new Rei(tabuleiro, Cor.PRETA));		
 	}
 
 }

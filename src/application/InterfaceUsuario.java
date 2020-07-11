@@ -50,9 +50,14 @@ public class InterfaceUsuario {
 		imprimePecasCapturadas(pecaCapturada);
 		System.out.println();
 		System.out.println("Turno: " + partida.getTurno());
-		System.out.println("Vez do jodador responsável pelas peças da cor " + partida.getTurnoJogador());
-		if(partida.getCheck())
-			System.out.println("CHECK!");
+		if(!partida.getCheckmate()) {
+		  System.out.println("Vez do jodador responsável pelas peças da cor " + partida.getTurnoJogador());
+		  if(partida.getCheck())
+			 System.out.println("CHECK!");
+		} else {
+			System.out.println("CHECKMATE!");
+			System.out.println("Vencedor: " + partida.getTurnoJogador());
+		}			
 	}
 		
 	 public static xadrezPosition lerXadrezPosition(Scanner sc) {
