@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import Xadrez.Pecas.Peao;
 import Xadrez.Pecas.Rei;
 import Xadrez.Pecas.Torre;
 import tabuleiroGame.Peca;
@@ -188,12 +189,23 @@ public class Partida {
 		turno = 1;
 		turnoJogador = Cor.BRANCA;
 		
-		posicionarPecaXadrez('h', 7, new Torre(tabuleiro, Cor.BRANCA));
-		posicionarPecaXadrez('d', 1, new Torre(tabuleiro, Cor.BRANCA));
+		posicionarPecaXadrez('a', 1, new Torre(tabuleiro, Cor.BRANCA));
+		posicionarPecaXadrez('h', 1, new Torre(tabuleiro, Cor.BRANCA));
 		posicionarPecaXadrez('e', 1, new Rei(tabuleiro, Cor.BRANCA));
+		
+		for(int i = 0; i < tabuleiro.getColuna(); i++) {
+			posicionarPecaXadrez((char)('a' +i), 2, new Peao(tabuleiro, Cor.BRANCA));
+		}
 
-		posicionarPecaXadrez('b', 8, new Torre(tabuleiro, Cor.PRETA));
-		posicionarPecaXadrez('a', 8, new Rei(tabuleiro, Cor.PRETA));		
+		posicionarPecaXadrez('a', 8, new Torre(tabuleiro, Cor.PRETA));
+		posicionarPecaXadrez('h', 8, new Torre(tabuleiro, Cor.PRETA));
+		posicionarPecaXadrez('e', 8, new Rei(tabuleiro, Cor.PRETA));
+		
+		for(int i = 0; i < tabuleiro.getColuna(); i++) {
+			posicionarPecaXadrez((char)('a' +i), 7, new Peao(tabuleiro, Cor.PRETA));
+		}
+		
+		
 	}
 
 }
