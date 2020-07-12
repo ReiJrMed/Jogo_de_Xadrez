@@ -24,7 +24,6 @@ public class Partida {
 	private boolean check;
 	private boolean checkmate;
 	
-	private List<Peca_Xadrez> opcoesSaidaCheck = new ArrayList<>();
 	private List<Peca_Xadrez> possible_enPassant = new ArrayList<>();
 	private List<Peca> pecasCapturadas = new ArrayList<>();
 	private List<Peca> pecasTabuleiro = new ArrayList<>();
@@ -58,9 +57,8 @@ public class Partida {
 		return peaoPromovido;
 	}
 	
-	public List<Peca_Xadrez> getTiraCheck(Peca_Xadrez p){
-		opcoesSaidaCheck.clear();
-		
+	public boolean TiraCheck(Peca_Xadrez p){
+				
 		if((testeCheck(p.getCor())) && (!testeCheckmate(p.getCor()))) {
 			boolean[][] mat = p.movimentosPossiveis();
 			
@@ -73,13 +71,13 @@ public class Partida {
 	    				boolean TesteCheque = testeCheck(p.getCor());
 	    				desfazerProcessoMovimento(origin, destiny, pecaCapturada);
 	    				if(!TesteCheque)
-	    					opcoesSaidaCheck.add(p);
+	    					return true;
 	    			}
 	    		}
 	    	}
 	    }
 				
-		return opcoesSaidaCheck;
+		return false;
 	}
 	
 	public Peca_Xadrez[][] getPecas(){
@@ -344,37 +342,30 @@ public class Partida {
 		turnoJogador = Cor.BRANCA;
 		
 		posicionarPecaXadrez('a', 1, new Torre(tabuleiro, Cor.BRANCA));
-		//posicionarPecaXadrez('b', 1, new Cavalo(tabuleiro, Cor.BRANCA));
-		//posicionarPecaXadrez('c', 1, new Bispo(tabuleiro, Cor.BRANCA));
-		//posicionarPecaXadrez('d', 1, new Rainha(tabuleiro, Cor.BRANCA));
+		posicionarPecaXadrez('b', 1, new Cavalo(tabuleiro, Cor.BRANCA));
+		posicionarPecaXadrez('c', 1, new Bispo(tabuleiro, Cor.BRANCA));
+		posicionarPecaXadrez('d', 1, new Rainha(tabuleiro, Cor.BRANCA));
 		posicionarPecaXadrez('e', 1, new Rei(tabuleiro, Cor.BRANCA, this));
-		//posicionarPecaXadrez('f', 1, new Bispo(tabuleiro, Cor.BRANCA));
-		//posicionarPecaXadrez('g', 1, new Cavalo(tabuleiro, Cor.BRANCA));
+		posicionarPecaXadrez('f', 1, new Bispo(tabuleiro, Cor.BRANCA));
+		posicionarPecaXadrez('g', 1, new Cavalo(tabuleiro, Cor.BRANCA));
 		posicionarPecaXadrez('h', 1, new Torre(tabuleiro, Cor.BRANCA));
 				
-		/*for(int i = 0; i < tabuleiro.getColuna(); i++) {
+		for(int i = 0; i < tabuleiro.getColuna(); i++) {
 			posicionarPecaXadrez((char)('a' +i), 2, new Peao(tabuleiro, Cor.BRANCA, this));
-		}*/
-		
-		posicionarPecaXadrez('b', 7, new Peao(tabuleiro, Cor.BRANCA, this));
-		posicionarPecaXadrez('g', 7, new Peao(tabuleiro, Cor.BRANCA, this));
-		
+		}		
 
 		posicionarPecaXadrez('a', 8, new Torre(tabuleiro, Cor.PRETA));
-		//posicionarPecaXadrez('b', 8, new Cavalo(tabuleiro, Cor.PRETA));
-		//posicionarPecaXadrez('c', 8, new Bispo(tabuleiro, Cor.PRETA));
-		//posicionarPecaXadrez('d', 8, new Rainha(tabuleiro, Cor.PRETA));
+		posicionarPecaXadrez('b', 8, new Cavalo(tabuleiro, Cor.PRETA));
+		posicionarPecaXadrez('c', 8, new Bispo(tabuleiro, Cor.PRETA));
+		posicionarPecaXadrez('d', 8, new Rainha(tabuleiro, Cor.PRETA));
 		posicionarPecaXadrez('e', 8, new Rei(tabuleiro, Cor.PRETA, this));
-		//posicionarPecaXadrez('f', 8, new Bispo(tabuleiro, Cor.PRETA));
-		//posicionarPecaXadrez('g', 8, new Cavalo(tabuleiro, Cor.PRETA));
+		posicionarPecaXadrez('f', 8, new Bispo(tabuleiro, Cor.PRETA));
+		posicionarPecaXadrez('g', 8, new Cavalo(tabuleiro, Cor.PRETA));
 		posicionarPecaXadrez('h', 8, new Torre(tabuleiro, Cor.PRETA));
 			
-		/*for(int i = 0; i < tabuleiro.getColuna(); i++) {
+		for(int i = 0; i < tabuleiro.getColuna(); i++) {
 			posicionarPecaXadrez((char)('a' +i), 7, new Peao(tabuleiro, Cor.PRETA, this));
-		}*/		
-		
-		posicionarPecaXadrez('b', 2, new Peao(tabuleiro, Cor.PRETA, this));
-		posicionarPecaXadrez('g', 2, new Peao(tabuleiro, Cor.PRETA, this));
+		}		
 		
 	}
 

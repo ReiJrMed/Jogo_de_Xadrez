@@ -131,12 +131,12 @@ public class InterfaceUsuario {
 		else {
           if(!fundoPosition) {		
 			if (peca.getCor() == Cor.BRANCA) {
-                if(partida.getTiraCheck(peca).contains(peca))
+                if(partida.TiraCheck(peca))
                 	System.out.print(ANSI_GREEN + peca + ANSI_RESET);//muda cor se peça tira rei do Check
                 else
 				  System.out.print(ANSI_WHITE + peca + ANSI_RESET);//método para colorir a peça console			
 			} else { 
-				if(partida.getTiraCheck(peca).contains(peca))
+				if(partida.TiraCheck(peca))
                 	System.out.print(ANSI_RED + peca + ANSI_RESET);//muda cor se peça tira rei do Check
 				else
 				    System.out.print(ANSI_YELLOW + peca + ANSI_RESET);//método para colorir a peça console
