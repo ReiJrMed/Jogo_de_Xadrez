@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import Xadrez.Pecas.Bispo;
+import Xadrez.Pecas.Cavalo;
 import Xadrez.Pecas.Peao;
+import Xadrez.Pecas.Rainha;
 import Xadrez.Pecas.Rei;
 import Xadrez.Pecas.Torre;
 import tabuleiroGame.Peca;
@@ -190,21 +193,30 @@ public class Partida {
 		turnoJogador = Cor.BRANCA;
 		
 		posicionarPecaXadrez('a', 1, new Torre(tabuleiro, Cor.BRANCA));
-		posicionarPecaXadrez('h', 1, new Torre(tabuleiro, Cor.BRANCA));
+		posicionarPecaXadrez('b', 1, new Cavalo(tabuleiro, Cor.BRANCA));
+		posicionarPecaXadrez('c', 1, new Bispo(tabuleiro, Cor.BRANCA));
+		posicionarPecaXadrez('d', 1, new Rainha(tabuleiro, Cor.BRANCA));
 		posicionarPecaXadrez('e', 1, new Rei(tabuleiro, Cor.BRANCA));
-		
+		posicionarPecaXadrez('f', 1, new Bispo(tabuleiro, Cor.BRANCA));
+		posicionarPecaXadrez('g', 1, new Cavalo(tabuleiro, Cor.BRANCA));
+		posicionarPecaXadrez('h', 1, new Torre(tabuleiro, Cor.BRANCA));
+				
 		for(int i = 0; i < tabuleiro.getColuna(); i++) {
 			posicionarPecaXadrez((char)('a' +i), 2, new Peao(tabuleiro, Cor.BRANCA));
 		}
 
 		posicionarPecaXadrez('a', 8, new Torre(tabuleiro, Cor.PRETA));
-		posicionarPecaXadrez('h', 8, new Torre(tabuleiro, Cor.PRETA));
+		posicionarPecaXadrez('b', 8, new Cavalo(tabuleiro, Cor.PRETA));
+		posicionarPecaXadrez('c', 8, new Bispo(tabuleiro, Cor.PRETA));
+		posicionarPecaXadrez('d', 8, new Rainha(tabuleiro, Cor.PRETA));
 		posicionarPecaXadrez('e', 8, new Rei(tabuleiro, Cor.PRETA));
-		
+		posicionarPecaXadrez('f', 8, new Bispo(tabuleiro, Cor.PRETA));
+		posicionarPecaXadrez('g', 8, new Cavalo(tabuleiro, Cor.PRETA));
+		posicionarPecaXadrez('h', 8, new Torre(tabuleiro, Cor.PRETA));
+			
 		for(int i = 0; i < tabuleiro.getColuna(); i++) {
 			posicionarPecaXadrez((char)('a' +i), 7, new Peao(tabuleiro, Cor.PRETA));
-		}
-		
+		}		
 		
 	}
 

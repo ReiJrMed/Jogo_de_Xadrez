@@ -64,7 +64,7 @@ public class Torre extends Peca_Xadrez{
 			p.setColuna(p.getColuna() +1);
 		}		
 		
-		//acima
+		//abaixo
 		p.setValores(position.getLinha() +1, position.getColuna());
 		while(getTabuleiro().existPosition(p)) {
 			if((!getTabuleiro().positionOcupada(p))) {
