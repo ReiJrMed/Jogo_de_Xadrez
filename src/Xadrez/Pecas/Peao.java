@@ -43,8 +43,11 @@ public class Peao extends Peca_Xadrez{
 				
 				Position esquerda = new Position(position.getLinha(), position.getColuna() -1);
 				boolean enPassant = false;
-				if((existePecaAdversaria(esquerda)) && (getTabuleiro().existPosition(esquerda)))
-				  enPassant = partida.getEnPassant().contains((Peca_Xadrez)getTabuleiro().peca(esquerda));
+				if(getTabuleiro().existPosition(esquerda)) {
+					if(existePecaAdversaria(esquerda)) {
+					  enPassant = partida.getEnPassant().contains((Peca_Xadrez)getTabuleiro().peca(esquerda));
+					}
+				}				
 				
 				if(enPassant){
 					if(!getTabuleiro().positionOcupada(new Position(esquerda.getLinha() -1, esquerda.getColuna()))) {
@@ -54,8 +57,11 @@ public class Peao extends Peca_Xadrez{
 				
 				Position direita = new Position(position.getLinha(), position.getColuna() +1);
 				enPassant = false;
-				if((existePecaAdversaria(direita)) && (getTabuleiro().existPosition(direita)))
-					  enPassant = partida.getEnPassant().contains((Peca_Xadrez)getTabuleiro().peca(direita));
+				if(getTabuleiro().existPosition(direita)) {
+					if(existePecaAdversaria(direita))
+						  enPassant = partida.getEnPassant().contains((Peca_Xadrez)getTabuleiro().peca(direita));
+				}
+				
 					
 				if(enPassant){
 					if(!getTabuleiro().positionOcupada(new Position(direita.getLinha() -1, direita.getColuna()))) {
@@ -87,9 +93,11 @@ public class Peao extends Peca_Xadrez{
 				
 				Position esquerda = new Position(position.getLinha(), position.getColuna() -1);
 				boolean enPassant = false;
-				if((existePecaAdversaria(esquerda)) && (getTabuleiro().existPosition(esquerda)))
-				  enPassant = partida.getEnPassant().contains((Peca_Xadrez)getTabuleiro().peca(esquerda));
-				
+				if(getTabuleiro().existPosition(esquerda)) {
+					if(existePecaAdversaria(esquerda))
+						enPassant = partida.getEnPassant().contains((Peca_Xadrez)getTabuleiro().peca(esquerda));
+				}
+								
 				if(enPassant){
 					if(!getTabuleiro().positionOcupada(new Position(esquerda.getLinha() +1, esquerda.getColuna()))) {
 					   mat[esquerda.getLinha() +1][esquerda.getColuna()] = true;
@@ -98,8 +106,10 @@ public class Peao extends Peca_Xadrez{
 				
 				Position direita = new Position(position.getLinha(), position.getColuna() +1);
 				enPassant = false;
-				if((existePecaAdversaria(direita)) && (getTabuleiro().existPosition(direita)))
-					  enPassant = partida.getEnPassant().contains((Peca_Xadrez)getTabuleiro().peca(direita));
+				if(getTabuleiro().existPosition(direita)) {
+					if(existePecaAdversaria(direita))
+					   enPassant = partida.getEnPassant().contains((Peca_Xadrez)getTabuleiro().peca(direita));					
+				}
 					
 				if(enPassant){
 					if(!getTabuleiro().positionOcupada(new Position(direita.getLinha() +1, direita.getColuna()))) {

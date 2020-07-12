@@ -19,10 +19,10 @@ public class InterfaceUsuario {
 		public static final String ANSI_WHITE = "\u001B[37m";
 		public static final String ANSI_BLUE = "\u001B[34m";
 		public static final String ANSI_YELLOW = "\u001B[33m";
+		public static final String ANSI_GREEN = "\u001B[32m";
+		public static final String ANSI_RED = "\u001B[31m";
 		
 		/*public static final String ANSI_BLACK = "\u001B[30m";
-		public static final String ANSI_RED = "\u001B[31m";
-		public static final String ANSI_GREEN = "\u001B[32m";
 		public static final String ANSI_PURPLE = "\u001B[35m";
 		public static final String ANSI_CYAN = "\u001B[36m";
 		
@@ -45,7 +45,7 @@ public class InterfaceUsuario {
 	}
 	
 	public static void imprimePartida(Partida partida, List<Peca_Xadrez> pecaCapturada) {
-		imprimeTabuleiro(partida.getPecas());
+		imprimeTabuleiro(partida.getPecas(), partida);
 		System.out.println();
 		imprimePecasCapturadas(pecaCapturada);
 		System.out.println();
@@ -74,11 +74,11 @@ public class InterfaceUsuario {
     	 }*/   	 
      }	
 	
-	 public static void imprimeTabuleiro(Peca_Xadrez[][] pecas) {
+	 public static void imprimeTabuleiro(Peca_Xadrez[][] pecas, Partida partida) {
 		for(int i = 0; i < pecas.length; i++) {
 			System.out.print((pecas.length -i) + " ");
 			for(int j = 0; j < pecas[i].length; j++) {
-				imprimePeca(pecas[i][j], false);
+				imprimePeca(pecas[i][j], false, partida);
 			}
 			System.out.println();
 		}
@@ -96,11 +96,11 @@ public class InterfaceUsuario {
 		System.out.print(sb.toString());		
 	}
 	 
-	 public static void imprimeTabuleiro(Peca_Xadrez[][] pecas, boolean[][] movimentosPossiveis) {
+	 public static void imprimeTabuleiro(Peca_Xadrez[][] pecas, boolean[][] movimentosPossiveis, Partida partida) {
 		for(int i = 0; i < pecas.length; i++) {
 			System.out.print((pecas.length -i) + " ");
 			for(int j = 0; j < pecas[i].length; j++) {
-				imprimePeca(pecas[i][j], movimentosPossiveis[i][j]);
+				imprimePeca(pecas[i][j], movimentosPossiveis[i][j], partida);
 			}
 			System.out.println();
 		}
@@ -120,7 +120,7 @@ public class InterfaceUsuario {
 		  System.out.print(sb.toString());		
 	} 
 	
-	public static void imprimePeca(Peca_Xadrez peca, boolean fundoPosition) {
+	public static void imprimePeca(Peca_Xadrez peca, boolean fundoPosition, Partida partida) {
 				
 		if(peca == null) {
 			if(fundoPosition)
@@ -130,10 +130,17 @@ public class InterfaceUsuario {
 		}
 		else {
           if(!fundoPosition) {		
-			if (peca.getCor() == Cor.BRANCA)
-                System.out.print(ANSI_WHITE + peca + ANSI_RESET);//método para colorir a peça console
-            else 
-                System.out.print(ANSI_YELLOW + peca + ANSI_RESET);//método para colorir a peça console
+			if (peca.getCor() == Cor.BRANCA) {
+                if(partida.getTiraCheck(peca).contains(peca))
+                	System.out.print(ANSI_GREEN + peca + ANSI_RESET);//muda cor se peça tira rei do Check
+                else
+				  System.out.print(ANSI_WHITE + peca + ANSI_RESET);//método para colorir a peça console			
+			} else { 
+				if(partida.getTiraCheck(peca).contains(peca))
+                	System.out.print(ANSI_RED + peca + ANSI_RESET);//muda cor se peça tira rei do Check
+				else
+				    System.out.print(ANSI_YELLOW + peca + ANSI_RESET);//método para colorir a peça console
+			}
           } else
         	    System.out.print(ANSI_BLUE + peca + ANSI_RESET);
         }

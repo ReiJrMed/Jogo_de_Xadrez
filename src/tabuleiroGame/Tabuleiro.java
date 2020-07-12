@@ -35,7 +35,7 @@ public class Tabuleiro {
 	public Peca peca(Position position) {
 		if(!existPosition(position))
 			throw new tabuleiroGameException("Posição inexistente no tabuleiro.");
-		
+				
 		return pecas[position.getLinha()][position.getColuna()];
 	}
 	
