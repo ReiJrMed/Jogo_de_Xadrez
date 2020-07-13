@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -26,7 +27,6 @@ public class InterfaceUsuario {
 		public static final String ANSI_PURPLE = "\u001B[35m";
 		public static final String ANSI_CYAN = "\u001B[36m";
 		
-
 		public static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
 		public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
 		public static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
@@ -40,8 +40,14 @@ public class InterfaceUsuario {
 	
 	// https://stackoverflow.com/questions/2979383/java-clear-the-console
 	public static void clearScreen() {
-	    System.out.print("\033[H\033[2J");
-	    System.out.flush();
+		
+			try {
+				new ProcessBuilder("clear").inheritIO().start().waitFor();
+			} catch (InterruptedException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				
 	}
 	
 	public static void imprimePartida(Partida partida, List<Peca_Xadrez> pecaCapturada) {
